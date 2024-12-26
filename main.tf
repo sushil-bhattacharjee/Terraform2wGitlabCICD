@@ -9,7 +9,7 @@ terraform {
     unlock_method  = "DELETE"
     retry_wait_min = 5
   }
-}
+
 
 # Required providers
 required_providers {
@@ -52,4 +52,5 @@ resource "iosxe_interface_loopback" "management_loopback" {
   ipv6_nd_ra_suppress_all         = false
   name                            = 20
   shutdown                        = false
+}
 }
