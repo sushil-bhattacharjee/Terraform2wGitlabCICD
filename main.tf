@@ -1,12 +1,21 @@
 terraform {
   backend "http" {
-
+    address        = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default"
+    lock_address   = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default/lock"
+    unlock_address = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default/lock"
+    username       = "root"
+    password       = "REMOVED_SECRETBJ6iAni2s1j7mmkbUu4A"
+    lock_method    = "POST"
+    unlock_method  = "DELETE"
+    retry_wait_min = 5
   }
-  required_providers {
-    iosxe = {
-      source  = "ciscodevnet/iosxe"
-      version = "0.5.6"
-    }
+}
+
+# Required providers
+required_providers {
+  iosxe = {
+    source  = "ciscodevnet/iosxe"
+    version = "0.5.6"
   }
 }
 
@@ -22,16 +31,10 @@ data "iosxe_interface_loopback" "Loopback100" {
   name = 100
 }
 
-# Declare an output value for the remote resource 
+# Declare an output value for the remote resource
 output "loopback_address" {
   value = data.iosxe_interface_loopback.Loopback100.ipv4_address
 }
-
-# Define the import block
-# import {
-#     id = "Cisco-IOS-XE-native:native/interface/Loopback=100"
-#     to = iosxe_interface_loopback.management_loopback
-# }
 
 # Define the resource block for imported configuration
 resource "iosxe_interface_loopback" "management_loopback" {
