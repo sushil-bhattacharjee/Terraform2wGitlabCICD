@@ -17,8 +17,9 @@ before_script:
   # Ensure the required provider is available
   - echo "Setting up Terraform provider..."
   - mkdir -p ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/
-  - unzip terraform-provider-iosxe_0.5.6_linux_amd64.zip -d ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/
+  - unzip -o terraform-provider-iosxe_0.5.6_linux_amd64.zip -d ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/ # Force overwrite
   - ls -R ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/
+
 
 validate:
   stage: validate
