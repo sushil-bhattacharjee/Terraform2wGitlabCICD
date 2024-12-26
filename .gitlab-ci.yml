@@ -46,5 +46,10 @@ apply:
 loopback_test_job:
   stage: integration-test
   script:
-    - ./test.sh                     # Run the test.sh script to validate loopbacks
+    - echo "Current directory contents:"
+    - ls -la                     # List files in the current directory
+    - pwd                        # Print the current working directory
+    - chmod +x ./test.sh         # Ensure test.sh is executable
+    - ./test.sh                  # Run the script
+
 

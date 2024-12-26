@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 # Extract IPv4 addresses
 ipv4_addresses=$(cat terraform.tfvars | awk -F'= ' '/ipv4_address/ {gsub(/"/, "", $2); print $2}')
