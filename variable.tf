@@ -24,3 +24,5 @@ variable "loopbacks" {
     ipv4_address = string
   }))
 }
+
+variable "gitlab_token" {}

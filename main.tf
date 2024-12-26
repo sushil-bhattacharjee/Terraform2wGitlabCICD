@@ -4,7 +4,7 @@ terraform {
     lock_address   = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default/lock"
     unlock_address = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default/lock"
     username       = "root"
-    password       = password = var.gitlab_token
+    password       = var.gitlab_token
     lock_method    = "POST"
     unlock_method  = "DELETE"
     retry_wait_min = 5
