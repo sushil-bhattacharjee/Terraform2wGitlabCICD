@@ -1,8 +1,40 @@
-stages:
-  - test
+# Use a Terraform Docker image to ensure the Terraform CLI is available
+image: hashicorp/terraform:1.5.0
 
-test-job:
-  stage: test
+variables:
+  IGNORE_TF_DEPRECATION_WARNING: "true"  # Suppress Terraform template deprecation warnings
+  TF_STATE_NAME: "default"
+  TF_CACHE_KEY: "default"
+  TF_IN_AUTOMATION: "true"               # Indicates Terraform is running in CI/CD
+
+stages:
+  - validate
+  - plan
+  - apply
+  - integration-test
+
+validate:
+  stage: validate
   script:
-    - echo "Runner is working!"
-    - uname -a
+    - terraform init                # Initialize Terraform
+    - terraform validate            # Validate Terraform configuration
+
+plan:
+  stage: plan
+  script:
+    - terraform init                # Initialize Terraform
+    - terraform plan -out=tfplan    # Generate Terraform execution plan
+  artifacts:
+    paths:
+      - tfplan                     # Store the plan file for use in the apply stage
+
+apply:
+  stage: apply
+  when: manual                     # Manual approval required before applying
+  script:
+    - terraform apply tfplan       # Apply the generated plan
+
+loopback_test_job:
+  stage: integration-test
+  script:
+    - ./test.sh                    # Run the test.sh script to validate loopbacks
