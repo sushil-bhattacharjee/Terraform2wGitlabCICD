@@ -14,9 +14,11 @@ stages:
   - integration-test
 
 before_script:
-  # Ensure the required provider is available locally
+  # Ensure the required provider is available
+  - echo "Setting up Terraform provider..."
   - mkdir -p ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/
   - unzip terraform-provider-iosxe_0.5.6_linux_amd64.zip -d ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/
+  - ls -R ~/.terraform.d/plugins/registry.terraform.io/ciscodevnet/iosxe/0.5.6/linux_amd64/
 
 validate:
   stage: validate
@@ -37,9 +39,11 @@ apply:
   stage: apply
   when: manual                      # Manual approval required before applying
   script:
+    - terraform init                # Initialize Terraform
     - terraform apply tfplan        # Apply the generated plan
 
 loopback_test_job:
   stage: integration-test
   script:
     - ./test.sh                     # Run the test.sh script to validate loopbacks
+
