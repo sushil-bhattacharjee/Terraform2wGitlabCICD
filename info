@@ -1,0 +1,9 @@
+
+#######
+FAQ-1: If there is a drift in between terraform and Device for the same resource block, then
+To check the difference, "$ terraform plan -refresh-only"
+To change keeping terraform state and change the device as per terraform '$ terraform apply -auto-approve"
+To change in terraform and keep device config as it is, "$ terraform apply refresh-only -auto-approve"
+
+############
+TF_ADDRESS="http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default"

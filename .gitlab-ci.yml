@@ -1,0 +1,20 @@
+include:
+ # fetch the stable template
+  - template: Terraform.gitlab-ci.yml
+
+variables:
+ TF_STATE_NAME: default
+ TF_CACHE_KEY: default
+
+stages:
+  - validate
+  - test
+  - build
+  - deploy
+  - integration-test
+  - cleanup
+
+loopback_test_job:
+  stage: integration-test
+  script:
+    - ./test.sh
