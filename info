@@ -7,3 +7,9 @@ To change in terraform and keep device config as it is, "$ terraform apply refre
 
 ############
 TF_ADDRESS="http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default"
+
+
+########At final state of CI/CD, we need to ping Loopback from the UbuntuPC/Runner##
+Therefore, it requires to add the following routings
+sudo ip route add 192.168.20.1/32 via 10.1.10.15 dev ens33
+sudo ip route add 192.168.30.1/32 via 10.1.10.15 dev ens33
