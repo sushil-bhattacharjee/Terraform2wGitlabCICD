@@ -1,10 +1,10 @@
 terraform {
   backend "http" {
-     address        = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default"
+    address        = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default"
     lock_address   = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default/lock"
     unlock_address = "http://10.1.10.98:8098/api/v4/projects/4/terraform/state/default/lock"
     username       = "root"
-    password       = "REMOVED_SECRETBJ6iAni2s1j7mmkbUu4A"
+    password       = "REMOVED_SECRETfH41z6PADwC1kSrqWszL"
     lock_method    = "POST"
     unlock_method  = "DELETE"
     retry_wait_min = 5
