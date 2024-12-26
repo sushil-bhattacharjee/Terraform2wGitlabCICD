@@ -25,4 +25,9 @@ variable "loopbacks" {
   }))
 }
 
-variable "gitlab_token" {}
+variable "gitlab_token" {
+  description = "Gitlab token"
+  type        = string
+  default = "value"
+  sensitive   = true
+}
